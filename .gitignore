@@ -1,0 +1,17 @@
+/bin/
+/target/
+.*
+*.class
+/build/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+*.MF
+*.ini
+
+*.iml
+.idea
+
+!.gitignore
