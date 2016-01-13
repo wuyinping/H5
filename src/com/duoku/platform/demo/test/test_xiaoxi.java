@@ -4,6 +4,7 @@ import android.test.ActivityInstrumentationTestCase2;
 import android.util.DisplayMetrics;
 import com.duoku.platform.demo.test.utils.Constants;
 import com.duoku.platform.demo.test.utils.DeviceUtil;
+import com.duoku.platform.demo.test.utils.login1;
 import com.duoku.platform.demo.test.utils.sendmsg;
 import com.robotium.solo.By;
 import com.robotium.solo.Solo;
@@ -62,6 +63,7 @@ public class test_xiaoxi extends ActivityInstrumentationTestCase2 {
         sendmsg.send();
         solo.clickOnView(solo.getView(Constants.BUTTON_CLOSE));
         solo.goBack();
+        solo.finishOpenedActivities();
     }
 
     public void test_xiaoxi(){

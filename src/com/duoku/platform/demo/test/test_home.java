@@ -4,6 +4,7 @@ import android.test.ActivityInstrumentationTestCase2;
 import android.util.DisplayMetrics;
 import com.duoku.platform.demo.test.utils.Constants;
 import com.duoku.platform.demo.test.utils.DeviceUtil;
+import com.duoku.platform.demo.test.utils.login1;
 import com.duoku.platform.demo.test.utils.sendmsg;
 import com.robotium.solo.Solo;
 import com.robotium.solo.Solo.Config;
@@ -49,6 +50,7 @@ public class test_home extends ActivityInstrumentationTestCase2 {
 		if (solo.searchText(Constants.TEXT_BAIDU_LOGIN)) {
 			login1.login(solo, "duoku9991@126.com", "y2631488");
 		}
+
 		solo.waitForText("登录成功");
 
 		if (solo.waitForView(bd_actionnotice_toptitle)) {
@@ -67,6 +69,8 @@ public class test_home extends ActivityInstrumentationTestCase2 {
 //		DataCleanManager.cleanApplicationData(solo.getCurrentActivity().getApplicationContext(), "com.baidu.bdgamesdk.demo");
 //		Runtime.getRuntime().exec("rm -rf /sdcard/com.baidu.plaformsdk");
 		sendmsg.send();
+		solo.clickOnView(solo.getView(Constants.BUTTON_CLOSE));
+		solo.goBack();
 		solo.finishOpenedActivities();
 	}
 

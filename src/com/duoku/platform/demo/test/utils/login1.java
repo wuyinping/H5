@@ -1,8 +1,6 @@
-package com.duoku.platform.demo.test;
+package com.duoku.platform.demo.test.utils;
 
 import android.widget.EditText;
-
-import com.duoku.platform.demo.test.utils.Constants;
 import com.robotium.solo.Solo;
 
 public class login1 {

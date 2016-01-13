@@ -4,6 +4,7 @@ import android.test.ActivityInstrumentationTestCase2;
 import android.util.DisplayMetrics;
 import com.duoku.platform.demo.test.utils.Constants;
 import com.duoku.platform.demo.test.utils.DeviceUtil;
+import com.duoku.platform.demo.test.utils.login1;
 import com.duoku.platform.demo.test.utils.sendmsg;
 import com.robotium.solo.By;
 import com.robotium.solo.Solo;
@@ -45,7 +46,7 @@ public class test_person extends ActivityInstrumentationTestCase2 {
         }
         solo.clickOnView(solo.getView("login_btn"));
         if (solo.searchText(Constants.TEXT_BAIDU_LOGIN)) {
-            login1.login(solo, "duoku9991@126.com", "y2631488");
+            login1.login(solo, "zjq062501@163.com", "qazwsx");
         }
 
         if (solo.waitForView(bd_actionnotice_toptitle)) {
@@ -65,8 +66,15 @@ public class test_person extends ActivityInstrumentationTestCase2 {
 //        Runtime.getRuntime().exec("rm -rf /sdcard/com.baidu.plaformsdk");
         //solo.finishOpenedActivities();
         //sendmsg.send();
-        solo.clickOnView(solo.getView(Constants.BUTTON_CLOSE));
-        solo.goBack();
+//        if(solo.waitForText("百度账号登录")){
+//          solo.finishOpenedActivities();
+//        }else{
+//            solo.clickOnView(solo.getView(Constants.BUTTON_CLOSE));
+//            solo.goBack();
+//        }
+        solo.finishOpenedActivities();
+
+
     }
 
     public void test_person() {
@@ -110,7 +118,7 @@ public class test_person extends ActivityInstrumentationTestCase2 {
                 }
 
                 solo.clickOnText("代金券");
-                if (solo.waitForWebElement(By.className("user_photo"), 2000, false)) {
+                if (solo.searchText("有效期", 1, false)) {
                     Constants.Test_Result = DeviceUtil.getAssetStatus(solo.getCurrentActivity().getApplicationContext(), "H74", 1);
                     sendmsg.send();
                 } else if (solo.searchText("暂时没有内容")) {
