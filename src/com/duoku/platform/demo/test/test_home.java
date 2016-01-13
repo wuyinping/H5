@@ -48,7 +48,7 @@ public class test_home extends ActivityInstrumentationTestCase2 {
 		}
 		solo.clickOnView(solo.getView("login_btn"));
 		if (solo.searchText(Constants.TEXT_BAIDU_LOGIN)) {
-			login1.login(solo, "duoku9991@126.com", "y2631488");
+			login1.login(solo, Constants.USER_BAIDU, Constants.PASS_BAIDU);
 		}
 
 		solo.waitForText("登录成功");

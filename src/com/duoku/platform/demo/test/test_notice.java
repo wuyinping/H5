@@ -42,8 +42,7 @@ public class test_notice extends ActivityInstrumentationTestCase2 {
         }
         solo.clickOnView(solo.getView("login_btn"));
         if (solo.searchText(Constants.TEXT_BAIDU_LOGIN)) {
-            login1.login(solo, "duoku9991@126.com", "y2631488");
-        }
+            login1.login(solo, Constants.USER_BAIDU2, Constants.PASS_BAIDU2);        }
 
         if (solo.waitForView(bd_actionnotice_toptitle)) {
             solo.clickOnView(solo.getView(Constants.LOGINNOTICE_CLOSE));

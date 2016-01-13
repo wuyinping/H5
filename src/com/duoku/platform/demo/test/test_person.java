@@ -46,7 +46,7 @@ public class test_person extends ActivityInstrumentationTestCase2 {
         }
         solo.clickOnView(solo.getView("login_btn"));
         if (solo.searchText(Constants.TEXT_BAIDU_LOGIN)) {
-            login1.login(solo, "zjq062501@163.com", "qazwsx");
+            login1.login(solo, Constants.USER_BAIDU2, Constants.PASS_BAIDU2);
         }
 
         if (solo.waitForView(bd_actionnotice_toptitle)) {
