@@ -72,7 +72,7 @@ public class test_chouti1 extends ActivityInstrumentationTestCase2 {
     public void test_hello() {
 
 
-        // nav_notice
+        // nav_notice test
         if (solo.waitForWebElement(By.className(Constants.NOTICE), 1, 2000, false)) {
             solo.clickOnWebElement(By.className(Constants.NOTICE));
             // 列表不为空
