@@ -1,20 +1,15 @@
 package com.duoku.platform.demo.test.utils;
 
-import java.io.IOException;
-
+import android.util.Log;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
-
-import android.util.Log;
 
 public class sendmsg {
 
 	public static String smsHost = "http://monitor.client.duoku.com:8080/unionsdkmonitor/unionsdk_monitor.php?";
 
 	public static void send() {
-		Log.e("TAG", "test_chouti result : " + Constants.Test_Result);
-
 		if (!Constants.Test_Result.equals("")) {
 			new Thread() {
 

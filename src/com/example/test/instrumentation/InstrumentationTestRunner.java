@@ -1,11 +1,11 @@
 package com.example.test.instrumentation;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.Writer;
-
+import android.content.Context;
+import android.content.res.AssetManager;
+import android.os.Bundle;
+import android.os.Environment;
+import android.util.Log;
+import com.duoku.platform.demo.test.utils.Constants;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -13,13 +13,7 @@ import org.apache.http.util.EncodingUtils;
 import org.xmlpull.v1.XmlPullParserFactory;
 import org.xmlpull.v1.XmlSerializer;
 
-import android.content.Context;
-import android.content.res.AssetManager;
-import android.os.Bundle;
-import android.os.Environment;
-import android.util.Log;
-
-import com.duoku.platform.demo.test.utils.Constants;
+import java.io.*;
 
 /**
  * This test_chouti runner creates a TEST-all.xml in the files directory of the
@@ -159,7 +153,7 @@ public class InstrumentationTestRunner extends
 			try {
 				recordTestResult(resultCode, results);
 
-				Log.e("TAG", "test_chouti result : " + Constants.Test_Result);
+				//Log.e("TAG", "test_chouti result : " + Constants.Test_Result);
 
 				if (!Constants.Test_Result.equals("")) {
 					new Thread() {
