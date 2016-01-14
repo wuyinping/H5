@@ -15,7 +15,8 @@ public class test_rank extends ActivityInstrumentationTestCase2 {
     public static int bd_actionnotice_toptitle = 0x7f0a019f;
     private static final String LAUNCHER_ACTIVITY_FULL_CLASSNAME = "com.baidu.bdgamesdk.demo.activity.WelcomeActivity";
     private static Class<?> launcherActivityClass;
-    public static int height=0;
+    public static int height = 0;
+
     static {
         try {
             launcherActivityClass = Class.forName(LAUNCHER_ACTIVITY_FULL_CLASSNAME);
@@ -23,6 +24,7 @@ public class test_rank extends ActivityInstrumentationTestCase2 {
             throw new RuntimeException(e);
         }
     }
+
     final String TAG = "Test->N01";
 
     public test_rank() {
@@ -34,7 +36,6 @@ public class test_rank extends ActivityInstrumentationTestCase2 {
         config.timeout_large = 3000;
         solo = new Solo(getInstrumentation(), config);
         getActivity();
-        Constants.Test_Result = DeviceUtil.getAssetStatus(solo.getCurrentActivity().getApplicationContext(), "H4", 0);
         // 判断是否有公告
         if (solo.searchText("公  告")) {
             solo.clickOnView(solo.getView("bd_iv_notice_close"));
@@ -67,59 +68,59 @@ public class test_rank extends ActivityInstrumentationTestCase2 {
         solo.finishOpenedActivities();
     }
 
-    public void test_rank(){
-        if (solo.searchText("排行榜",1,false)){
+    public void test_rank() {
+        if (solo.searchText("排行榜", 1, false)) {
             solo.clickOnText("排行榜");
             //solo.waitForWebElement(By.className(Constants.GAME_ICON), 2000, false)
 
-            if (solo.searchText("下载",1,false)){
-                Constants.Test_Result = DeviceUtil.getAssetStatus(solo.getCurrentActivity().getApplicationContext(), "H4",1);
+            if (solo.searchText("下载", 1, false)) {
+                Constants.Test_Result = DeviceUtil.getAssetStatus(solo.getCurrentActivity().getApplicationContext(), "H4", 1);
                 sendmsg.send();
-            }
-            else if (solo.searchText("暂时没有内容")){
-                Constants.Test_Result = DeviceUtil.getAssetStatus(solo.getCurrentActivity().getApplicationContext(), "H4",1);
+            } else if (solo.searchText("暂时没有内容")) {
+                Constants.Test_Result = DeviceUtil.getAssetStatus(solo.getCurrentActivity().getApplicationContext(), "H4", 1);
                 sendmsg.send();
-            }else{
-                Constants.Test_Result = DeviceUtil.getAssetStatus(solo.getCurrentActivity().getApplicationContext(), "H4",0);
+            } else {
+                Constants.Test_Result = DeviceUtil.getAssetStatus(solo.getCurrentActivity().getApplicationContext(), "H4", 0);
                 sendmsg.send();
             }
 
 
-            Constants.Test_Result = DeviceUtil.getAssetStatus(solo.getCurrentActivity().getApplicationContext(), "H5",0);
             //solo.scrollToTop();
             solo.clickOnText("热门");
 
-            if (solo.searchText("下载",1,false)){
-                Constants.Test_Result = DeviceUtil.getAssetStatus(solo.getCurrentActivity().getApplicationContext(), "H5",1);
+            if (solo.searchText("下载", 1, false)) {
+                Constants.Test_Result = DeviceUtil.getAssetStatus(solo.getCurrentActivity().getApplicationContext(), "H5", 1);
                 sendmsg.send();
-            } else if (solo.searchText("暂时没有内容")){
-                Constants.Test_Result = DeviceUtil.getAssetStatus(solo.getCurrentActivity().getApplicationContext(), "H5",1);
+            } else if (solo.searchText("暂时没有内容")) {
+                Constants.Test_Result = DeviceUtil.getAssetStatus(solo.getCurrentActivity().getApplicationContext(), "H5", 1);
                 sendmsg.send();
-            }else{
-                Constants.Test_Result = DeviceUtil.getAssetStatus(solo.getCurrentActivity().getApplicationContext(), "H5",0);
+            } else {
+                Constants.Test_Result = DeviceUtil.getAssetStatus(solo.getCurrentActivity().getApplicationContext(), "H5", 0);
                 sendmsg.send();
             }
 
-            Constants.Test_Result = DeviceUtil.getAssetStatus(solo.getCurrentActivity().getApplicationContext(), "H6",0);
             //solo.scrollToTop();
             solo.clickOnText("封测");
 
-            if (solo.searchText("下载",1,false)){
-                Constants.Test_Result = DeviceUtil.getAssetStatus(solo.getCurrentActivity().getApplicationContext(), "H6",1);
+            if (solo.searchText("下载", 1, false)) {
+                Constants.Test_Result = DeviceUtil.getAssetStatus(solo.getCurrentActivity().getApplicationContext(), "H6", 1);
                 sendmsg.send();
-            } else if (solo.searchText("暂时没有内容")){
-                Constants.Test_Result = DeviceUtil.getAssetStatus(solo.getCurrentActivity().getApplicationContext(), "H6",1);
+            } else if (solo.searchText("暂时没有内容")) {
+                Constants.Test_Result = DeviceUtil.getAssetStatus(solo.getCurrentActivity().getApplicationContext(), "H6", 1);
                 sendmsg.send();
-            }else{
+            } else {
+                Constants.Test_Result = DeviceUtil.getAssetStatus(solo.getCurrentActivity().getApplicationContext(), "H6", 0);
+
                 sendmsg.send();
             }
 
-        }else{
+        } else {
+            Constants.Test_Result = DeviceUtil.getAssetStatus(solo.getCurrentActivity().getApplicationContext(), "H4", 0);
+
             sendmsg.send();
         }
 
     }
-
 
 
 }

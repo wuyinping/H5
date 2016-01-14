@@ -39,7 +39,6 @@ public class test_person extends ActivityInstrumentationTestCase2 {
         config.timeout_large = 2000;
         solo = new Solo(getInstrumentation(), config);
         getActivity();
-        Constants.Test_Result = DeviceUtil.getAssetStatus(solo.getCurrentActivity().getApplicationContext(), "H7", 0);
         // 判断是否有公告
         if (solo.searchText("公  告")) {
             solo.clickOnView(solo.getView("bd_iv_notice_close"));
@@ -144,6 +143,8 @@ public class test_person extends ActivityInstrumentationTestCase2 {
             }
 
         } else {
+            Constants.Test_Result = DeviceUtil.getAssetStatus(solo.getCurrentActivity().getApplicationContext(), "H7", 0);
+
             sendmsg.send();
         }
 
