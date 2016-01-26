@@ -8,7 +8,7 @@ import com.duoku.platform.demo.test.utils.login1;
 import com.duoku.platform.demo.test.utils.sendmsg;
 import com.robotium.solo.Solo;
 import com.robotium.solo.Solo.Config;
-import android.content.res.Resources;
+import android.app.Activity;
 public class test_home extends ActivityInstrumentationTestCase2 {
 
 	public test_home(Class activityClass) {
@@ -70,11 +70,13 @@ public class test_home extends ActivityInstrumentationTestCase2 {
 		}
 
 		int id;
-		id = solo.getCurrentActivity().getResources().getIdentifier(com.duoku.platform.demo.test.utils.Constants.LOGINNOTICE_ID,"android.widget.ImageView","com.baidu.bdgamesdk.demo");
-
-		if (solo.searchText("活动时间")) {
+		Activity activity=solo.getCurrentActivity();
+		id = activity.getResources().getIdentifier(Constants.LOGINNOTICE_ID,"id",activity.getPackageName());
+        //solo.searchText("活动时间")
+		if (solo.waitForView(id)) {
 			solo.clickOnView(solo.getView(Constants.LOGINNOTICE_CLOSE));
 		}
+
 		assertTrue(solo.getCurrentActivity().toString().contains(Constants.GAME_ACTIVITY));
 		DisplayMetrics metircs = new DisplayMetrics();
 		getActivity().getWindowManager().getDefaultDisplay().getMetrics(metircs);
