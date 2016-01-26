@@ -39,23 +39,7 @@ public class test_libao extends ActivityInstrumentationTestCase2 {
         solo = new Solo(getInstrumentation(), config);
         getActivity();
         Constants.Test_Result = DeviceUtil.getAssetStatus(solo.getCurrentActivity().getApplicationContext(), "H2", 0);
-        // 判断是否有公告
-        if (solo.searchText("公  告")) {
-            solo.clickOnView(solo.getView("bd_iv_notice_close"));
-        }
-        solo.clickOnView(solo.getView("login_btn"));
-        if (solo.searchText(Constants.TEXT_BAIDU_LOGIN)) {
-            login1.login(solo, Constants.USER_BAIDU1, Constants.PASS_BAIDU1);
-        }
 
-        if (solo.waitForView(bd_actionnotice_toptitle)) {
-            solo.clickOnView(solo.getView(Constants.LOGINNOTICE_CLOSE));
-        }
-        DisplayMetrics metircs = new DisplayMetrics();
-        getActivity().getWindowManager().getDefaultDisplay().getMetrics(metircs);
-        height = metircs.heightPixels / 2;
-        solo.clickOnScreen(40, height);
-        solo.waitForActivity(Constants.CONTAINER_ACTIVITY);
 
     }
 
@@ -65,12 +49,31 @@ public class test_libao extends ActivityInstrumentationTestCase2 {
 //        Runtime.getRuntime().exec("rm -rf /sdcard/com.baidu.plaformsdk");
         //solo.finishOpenedActivities();
         sendmsg.send();
+        solo.sleep(500);
         solo.clickOnView(solo.getView(Constants.BUTTON_CLOSE));
         solo.goBack();
         solo.finishOpenedActivities();
     }
 
 public void test_libao(){
+    // 判断是否有公告
+    if (solo.searchText("公  告")) {
+        solo.clickOnView(solo.getView("bd_iv_notice_close"));
+    }
+    solo.clickOnView(solo.getView("login_btn"));
+    if (solo.searchText(Constants.TEXT_BAIDU_LOGIN)) {
+        login1.login(solo, Constants.USER_BAIDU1, Constants.PASS_BAIDU1);
+    }
+
+    if (solo.waitForView(bd_actionnotice_toptitle)) {
+        solo.clickOnView(solo.getView(Constants.LOGINNOTICE_CLOSE));
+    }
+    assertTrue(solo.getCurrentActivity().toString().contains(Constants.GAME_ACTIVITY));
+    DisplayMetrics metircs = new DisplayMetrics();
+    getActivity().getWindowManager().getDefaultDisplay().getMetrics(metircs);
+    height = metircs.heightPixels / 2;
+    solo.clickOnScreen(40, height);
+    solo.waitForActivity(Constants.CONTAINER_ACTIVITY);
     if (solo.searchText("礼包")) {
         solo.clickOnText("礼包");
         if (solo.waitForWebElement(By.className(Constants.GIFT_ICON), 1, 2000, false)) {

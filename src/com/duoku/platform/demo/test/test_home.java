@@ -8,6 +8,7 @@ import com.duoku.platform.demo.test.utils.login1;
 import com.duoku.platform.demo.test.utils.sendmsg;
 import com.robotium.solo.Solo;
 import com.robotium.solo.Solo.Config;
+import android.content.res.Resources;
 public class test_home extends ActivityInstrumentationTestCase2 {
 
 	public test_home(Class activityClass) {
@@ -38,10 +39,27 @@ public class test_home extends ActivityInstrumentationTestCase2 {
 
 	public void setUp() throws Exception {
 		Config config = new Config();
-		config.timeout_large = 20;
+		config.timeout_large = 2000;
+		config.timeout_small=2000;
 		solo = new Solo(getInstrumentation(), config);
 		getActivity();
 		Constants.Test_Result = DeviceUtil.getAssetStatus(solo.getCurrentActivity().getApplicationContext(), "H10", 0);
+
+	}
+
+	@Override
+	public void tearDown() throws Exception {
+//		DataCleanManager.cleanApplicationData(solo.getCurrentActivity().getApplicationContext(), "com.baidu.bdgamesdk.demo");
+//		Runtime.getRuntime().exec("rm -rf /sdcard/com.baidu.plaformsdk");
+		sendmsg.send();
+		solo.sleep(500);
+		solo.clickOnView(solo.getView(Constants.BUTTON_CLOSE));
+		solo.goBack();
+		solo.finishOpenedActivities();
+	}
+
+	public void test_home() {
+
 		// 判断是否有公告
 		if (solo.searchText("公  告")) {
 			solo.clickOnView(solo.getView("bd_iv_notice_close"));
@@ -51,52 +69,24 @@ public class test_home extends ActivityInstrumentationTestCase2 {
 			login1.login(solo, Constants.USER_BAIDU, Constants.PASS_BAIDU);
 		}
 
-		solo.waitForText("登录成功");
+		int id;
+		id = solo.getCurrentActivity().getResources().getIdentifier(com.duoku.platform.demo.test.utils.Constants.LOGINNOTICE_ID,"android.widget.ImageView","com.baidu.bdgamesdk.demo");
 
-		if (solo.waitForView(bd_actionnotice_toptitle)) {
+		if (solo.searchText("活动时间")) {
 			solo.clickOnView(solo.getView(Constants.LOGINNOTICE_CLOSE));
 		}
+		assertTrue(solo.getCurrentActivity().toString().contains(Constants.GAME_ACTIVITY));
 		DisplayMetrics metircs = new DisplayMetrics();
 		getActivity().getWindowManager().getDefaultDisplay().getMetrics(metircs);
 		int height = metircs.heightPixels / 2;
 		solo.clickOnScreen(40, height);
-		solo.waitForActivity(Constants.CONTAINER_ACTIVITY);
-
-	}
-
-	@Override
-	public void tearDown() throws Exception {
-//		DataCleanManager.cleanApplicationData(solo.getCurrentActivity().getApplicationContext(), "com.baidu.bdgamesdk.demo");
-//		Runtime.getRuntime().exec("rm -rf /sdcard/com.baidu.plaformsdk");
-		sendmsg.send();
-		solo.clickOnView(solo.getView(Constants.BUTTON_CLOSE));
-		solo.goBack();
-		solo.finishOpenedActivities();
-	}
-
-	public void test_home() {
-
-//		if (solo.getWebElement(By.id(Constants.GIFT_ID), 0) != null || solo.getWebElement(By.id(Constants.MSG_ID), 0) != null || solo.getWebElement(By.id(Constants.PAIHANGBANG_ID), 0) != null
-//				|| solo.getWebElements(By.className(Constants.PERSON_ID)) != null || solo.getWebElement(By.className(Constants.NOTICE), 0) != null) {
-//			if (solo.getWebElement(By.className(Constants.HOME_FORUM_ITEM), 0) != null || solo.getWebElement(By.className(Constants.HOME_NOTICE_ITEM), 0) != null
-//					|| solo.getWebElement(By.className(Constants.HOME_VOUCHER_ITEM), 0) != null) {
-//				Constants.Test_Result = DeviceUtil.getAssetStatus(solo.getCurrentActivity().getApplicationContext(), "H10", 1);
-//				sendmsg.send();
-//			} else if (solo.searchText("暂时没有内容")) {
-//				Constants.Test_Result = DeviceUtil.getAssetStatus(solo.getCurrentActivity().getApplicationContext(), "H10", 1);
-//				sendmsg.send();
-//			} else {
-//				Constants.Test_Result = DeviceUtil.getAssetStatus(solo.getCurrentActivity().getApplicationContext(), "H10", 0);
-//				sendmsg.send();
-//			}
-//
-//		} else {
-//			Constants.Test_Result = DeviceUtil.getAssetStatus(solo.getCurrentActivity().getApplicationContext(), "H10", 0);
-//			sendmsg.send();
-//		}
 
 		if (solo.searchText("礼包")||solo.searchText("排行榜")||solo.searchText("公告")){
 			Constants.Test_Result = DeviceUtil.getAssetStatus(solo.getCurrentActivity().getApplicationContext(), "H10", 1);
+		}
+		solo.scrollToBottom();
+		if (!solo.searchText("没有更多了")){
+			Constants.Test_Result = DeviceUtil.getAssetStatus(solo.getCurrentActivity().getApplicationContext(), "H10", 2);
 		}
 	}
 
