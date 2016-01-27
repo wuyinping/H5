@@ -123,12 +123,14 @@ public class Constants {
 
     //账户信息UserInfo1    zjq062501@163.com/qazwsx
     //duoku9991@126.com  y2631488
-    public static final String USER_BAIDU ="duoku9999@126.com";
-    public static final String PASS_BAIDU ="y2631488";
-    public static final String USER_BAIDU1 ="duoku9998@126.com";
-    public static final String PASS_BAIDU1 ="y2631488";
-    public static final String USER_BAIDU2 ="duoku9997@126.com";
-    public static final String PASS_BAIDU2 ="y2631488";
+    public static final String USER_BAIDU ="2965180554@qq.com";
+    public static final String PASS_BAIDU ="123qwe";
+    public static final String USER_BAIDU1 ="3081679369@qq.com";
+    public static final String PASS_BAIDU1 ="123qwe";
+    public static final String USER_BAIDU2 ="393018276@qq.com";
+    public static final String PASS_BAIDU2 ="123qwe";
+    public static final String USER_BAIDU3 ="hibdqa";
+    public static final String PASS_BAIDU3 ="123qwe";
     public static final String USER_91 ="91ceshi@33.com";
     public static final String PASS_91 ="91ceshi";
     public static final String USER_DUOKU ="duokutestor";

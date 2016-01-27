@@ -9,12 +9,8 @@ import com.duoku.platform.demo.test.utils.sendmsg;
 import com.robotium.solo.Solo;
 import com.robotium.solo.Solo.Config;
 import android.app.Activity;
-public class test_home extends ActivityInstrumentationTestCase2 {
+public class test_home1 extends ActivityInstrumentationTestCase2 {
 
-	public test_home(Class activityClass) {
-		super(activityClass);
-		// TODO Auto-generated constructor stub
-	}
 
 	private Solo solo;
 	public static int bd_actionnotice_toptitle = 0x7f0a019f;
@@ -30,7 +26,7 @@ public class test_home extends ActivityInstrumentationTestCase2 {
 	}
 
 	@SuppressWarnings("unchecked")
-	public test_home() throws ClassNotFoundException {
+	public test_home1() throws ClassNotFoundException {
 		super(LAUNCHER_ACTIVITY_FULL_CLASSNAME, launcherActivityClass);
 
 	}
