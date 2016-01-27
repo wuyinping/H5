@@ -64,16 +64,25 @@ public void test_libao(){
     if (solo.searchText(Constants.TEXT_BAIDU_LOGIN)) {
         login1.login(solo, Constants.USER_BAIDU1, Constants.PASS_BAIDU1);
     }
-
-    if (solo.waitForView(bd_actionnotice_toptitle)) {
+//判断是否有登录后广告
+    int id;
+    android.app.Activity activity=solo.getCurrentActivity();
+    id = activity.getResources().getIdentifier(Constants.LOGINNOTICE_ID,"id",activity.getPackageName());
+    //solo.searchText("活动时间")
+    if (solo.waitForView(id)) {
         solo.clickOnView(solo.getView(Constants.LOGINNOTICE_CLOSE));
     }
+
     assertTrue(solo.getCurrentActivity().toString().contains(Constants.GAME_ACTIVITY));
     DisplayMetrics metircs = new DisplayMetrics();
     getActivity().getWindowManager().getDefaultDisplay().getMetrics(metircs);
     height = metircs.heightPixels / 2;
     solo.clickOnScreen(40, height);
     solo.waitForActivity(Constants.CONTAINER_ACTIVITY);
+
+
+
+
     if (solo.searchText("礼包")) {
         solo.clickOnText("礼包");
         if (solo.waitForWebElement(By.className(Constants.GIFT_ICON), 1, 2000, false)) {

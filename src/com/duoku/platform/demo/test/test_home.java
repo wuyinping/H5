@@ -72,7 +72,7 @@ public class test_home extends ActivityInstrumentationTestCase2 {
 		int id;
 		Activity activity=solo.getCurrentActivity();
 		id = activity.getResources().getIdentifier(Constants.LOGINNOTICE_ID,"id",activity.getPackageName());
-        //solo.searchText("活动时间")
+		//solo.searchText("活动时间")
 		if (solo.waitForView(id)) {
 			solo.clickOnView(solo.getView(Constants.LOGINNOTICE_CLOSE));
 		}
@@ -88,7 +88,7 @@ public class test_home extends ActivityInstrumentationTestCase2 {
 		}
 		solo.scrollToBottom();
 		if (!solo.searchText("没有更多了")){
-			Constants.Test_Result = DeviceUtil.getAssetStatus(solo.getCurrentActivity().getApplicationContext(), "H10", 2);
+			Constants.Test_Result = DeviceUtil.getAssetStatus(solo.getCurrentActivity().getApplicationContext(), "H10", 0);
 		}
 	}
 

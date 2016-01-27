@@ -37,25 +37,9 @@ public class test_person extends ActivityInstrumentationTestCase2 {
     public void setUp() throws Exception {
         Config config = new Config();
         config.timeout_large = 2000;
+        config.timeout_small=2000;
         solo = new Solo(getInstrumentation(), config);
         getActivity();
-        // 判断是否有公告
-        if (solo.searchText("公  告")) {
-            solo.clickOnView(solo.getView("bd_iv_notice_close"));
-        }
-        solo.clickOnView(solo.getView("login_btn"));
-        if (solo.searchText(Constants.TEXT_BAIDU_LOGIN)) {
-            login1.login(solo, Constants.USER_BAIDU2, Constants.PASS_BAIDU2);
-        }
-
-        if (solo.waitForView(bd_actionnotice_toptitle)) {
-            solo.clickOnView(solo.getView(Constants.LOGINNOTICE_CLOSE));
-        }
-        DisplayMetrics metircs = new DisplayMetrics();
-        getActivity().getWindowManager().getDefaultDisplay().getMetrics(metircs);
-        height = metircs.heightPixels / 2;
-        solo.clickOnScreen(40, height);
-        solo.waitForActivity(Constants.CONTAINER_ACTIVITY);
 
     }
 
@@ -77,6 +61,32 @@ public class test_person extends ActivityInstrumentationTestCase2 {
     }
 
     public void test_person() {
+        // 判断是否有公告
+        if (solo.searchText("公  告")) {
+            solo.clickOnView(solo.getView("bd_iv_notice_close"));
+        }
+        solo.clickOnView(solo.getView("login_btn"));
+        if (solo.searchText(Constants.TEXT_BAIDU_LOGIN)) {
+            login1.login(solo, Constants.USER_BAIDU, Constants.PASS_BAIDU);
+        }
+
+        int id;
+        android.app.Activity activity=solo.getCurrentActivity();
+        id = activity.getResources().getIdentifier(Constants.LOGINNOTICE_ID,"id",activity.getPackageName());
+        //solo.searchText("活动时间")
+        if (solo.waitForView(id)) {
+            solo.clickOnView(solo.getView(Constants.LOGINNOTICE_CLOSE));
+        }
+
+        assertTrue(solo.getCurrentActivity().toString().contains(Constants.GAME_ACTIVITY));
+        DisplayMetrics metircs = new DisplayMetrics();
+        getActivity().getWindowManager().getDefaultDisplay().getMetrics(metircs);
+        int height = metircs.heightPixels / 2;
+        solo.clickOnScreen(40, height);
+
+
+
+
         if (solo.searchText("我", 1, false)) {
             solo.clickOnText("我");
             if (solo.waitForWebElement(By.className(Constants.PORTAIT_ID)) || solo.waitForWebElement(By.className(Constants.USER_NAME))) {

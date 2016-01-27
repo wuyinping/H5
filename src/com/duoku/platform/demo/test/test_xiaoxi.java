@@ -62,19 +62,22 @@ public class test_xiaoxi extends ActivityInstrumentationTestCase2 {
         }
         solo.clickOnView(solo.getView("login_btn"));
         if (solo.searchText(Constants.TEXT_BAIDU_LOGIN)) {
-            login1.login(solo, Constants.USER_BAIDU1, Constants.PASS_BAIDU1);
-
+            login1.login(solo, Constants.USER_BAIDU, Constants.PASS_BAIDU);
         }
 
-        if (solo.waitForView(bd_actionnotice_toptitle)) {
+        int id;
+        android.app.Activity activity=solo.getCurrentActivity();
+        id = activity.getResources().getIdentifier(Constants.LOGINNOTICE_ID,"id",activity.getPackageName());
+        //solo.searchText("活动时间")
+        if (solo.waitForView(id)) {
             solo.clickOnView(solo.getView(Constants.LOGINNOTICE_CLOSE));
         }
 
+        assertTrue(solo.getCurrentActivity().toString().contains(Constants.GAME_ACTIVITY));
         DisplayMetrics metircs = new DisplayMetrics();
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(metircs);
-        height = metircs.heightPixels / 2;
+        int height = metircs.heightPixels / 2;
         solo.clickOnScreen(40, height);
-
         if (solo.searchText("消息")) {
             solo.clickOnText("消息");
             if (solo.getWebElements(By.textContent("暂时没有内容")) != null) {
