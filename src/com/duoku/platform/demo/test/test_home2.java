@@ -1,15 +1,17 @@
 package com.duoku.platform.demo.test;
 
+import android.app.Activity;
 import android.test.ActivityInstrumentationTestCase2;
 import android.util.DisplayMetrics;
+import com.duoku.platform.demo.test.utils.BDlogin;
 import com.duoku.platform.demo.test.utils.Constants;
 import com.duoku.platform.demo.test.utils.DeviceUtil;
-import com.duoku.platform.demo.test.utils.login1;
 import com.duoku.platform.demo.test.utils.sendmsg;
 import com.robotium.solo.Solo;
 import com.robotium.solo.Solo.Config;
-import android.app.Activity;
 public class test_home2 extends ActivityInstrumentationTestCase2 {
+
+    public static final DisplayMetrics METIRCS = new DisplayMetrics();
 
     public test_home2(Class activityClass) {
         super(activityClass);
@@ -66,21 +68,21 @@ public class test_home2 extends ActivityInstrumentationTestCase2 {
         }
         solo.clickOnView(solo.getView("login_btn"));
         if (solo.searchText(Constants.TEXT_BAIDU_LOGIN)) {
-            login1.login(solo, Constants.USER_BAIDU3, Constants.PASS_BAIDU3);
+           BDlogin.login(solo, Constants.USER_BAIDU3, Constants.PASS_BAIDU3);
         }
 
-        int id;
+
         Activity activity=solo.getCurrentActivity();
-        id = activity.getResources().getIdentifier(Constants.LOGINNOTICE_ID,"id",activity.getPackageName());
+        int id = activity.getResources().getIdentifier(Constants.LOGINNOTICE_ID, "id", activity.getPackageName());
         //solo.searchText("活动时间")
         if (solo.waitForView(id)) {
             solo.clickOnView(solo.getView(Constants.LOGINNOTICE_CLOSE));
         }
 
         assertTrue(solo.getCurrentActivity().toString().contains(Constants.GAME_ACTIVITY));
-        DisplayMetrics metircs = new DisplayMetrics();
-        getActivity().getWindowManager().getDefaultDisplay().getMetrics(metircs);
-        int height = metircs.heightPixels / 2;
+        DisplayMetrics METIRCS =  new DisplayMetrics();
+        getActivity().getWindowManager().getDefaultDisplay().getMetrics(METIRCS);
+        int height = METIRCS.heightPixels / 2;
         solo.clickOnScreen(40, height);
 
         if (solo.searchText("礼包")||solo.searchText("排行榜")||solo.searchText("公告")){

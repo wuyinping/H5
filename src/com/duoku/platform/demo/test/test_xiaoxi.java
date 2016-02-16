@@ -2,13 +2,13 @@ package com.duoku.platform.demo.test;
 
 import android.test.ActivityInstrumentationTestCase2;
 import android.util.DisplayMetrics;
+import android.util.Log;
+import com.duoku.platform.demo.test.utils.BDlogin;
 import com.duoku.platform.demo.test.utils.Constants;
 import com.duoku.platform.demo.test.utils.DeviceUtil;
-import com.duoku.platform.demo.test.utils.login1;
 import com.duoku.platform.demo.test.utils.sendmsg;
 import com.robotium.solo.By;
 import com.robotium.solo.Solo;
-import android.util.Log;
 
 @SuppressWarnings("rawtypes")
 public class test_xiaoxi extends ActivityInstrumentationTestCase2 {
@@ -62,7 +62,7 @@ public class test_xiaoxi extends ActivityInstrumentationTestCase2 {
         }
         solo.clickOnView(solo.getView("login_btn"));
         if (solo.searchText(Constants.TEXT_BAIDU_LOGIN)) {
-            login1.login(solo, Constants.USER_BAIDU1, Constants.PASS_BAIDU1);
+            BDlogin.login(solo, Constants.USER_BAIDU1, Constants.PASS_BAIDU1);
         }
 
         int id;

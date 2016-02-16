@@ -3,12 +3,11 @@ package com.duoku.platform.demo.test.utils;
 import android.widget.EditText;
 import com.robotium.solo.Solo;
 
-public class login1 {
+public class BDlogin {
 
-	/**
-	 * @param args
-	 */
+
 	public static void login(Solo solo,String username,String passwd){
+		solo.clickOnText("多酷登录");
 		solo.clearEditText(0);
 		solo.clearEditText(1);
 		solo.clickOnView(solo.getView(Constants.EDIT_ACCOUNT));

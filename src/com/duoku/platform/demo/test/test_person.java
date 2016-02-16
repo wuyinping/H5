@@ -2,9 +2,9 @@ package com.duoku.platform.demo.test;
 
 import android.test.ActivityInstrumentationTestCase2;
 import android.util.DisplayMetrics;
+import com.duoku.platform.demo.test.utils.BDlogin;
 import com.duoku.platform.demo.test.utils.Constants;
 import com.duoku.platform.demo.test.utils.DeviceUtil;
-import com.duoku.platform.demo.test.utils.login1;
 import com.duoku.platform.demo.test.utils.sendmsg;
 import com.robotium.solo.By;
 import com.robotium.solo.Solo;
@@ -67,7 +67,7 @@ public class test_person extends ActivityInstrumentationTestCase2 {
         }
         solo.clickOnView(solo.getView("login_btn"));
         if (solo.searchText(Constants.TEXT_BAIDU_LOGIN)) {
-            login1.login(solo, Constants.USER_BAIDU2, Constants.PASS_BAIDU2);
+            BDlogin.login(solo, Constants.USER_BAIDU2, Constants.PASS_BAIDU2);
         }
 
         int id;
