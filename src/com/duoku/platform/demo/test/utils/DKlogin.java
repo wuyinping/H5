@@ -8,7 +8,7 @@ import com.robotium.solo.Solo;
  */
 public class DKlogin {
     public static void login(Solo solo, String username, String passwd){
-
+        solo.clickOnText("多酷登录");
         solo.clearEditText(0);
         solo.clearEditText(1);
         solo.clickOnView(solo.getView(Constants.EDIT_ACCOUNT));
