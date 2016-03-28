@@ -1,10 +1,17 @@
 package com.duoku.platform.demo.test.utils;
 
+import android.os.Environment;
+
 /**
  * Created by wuyinping
  */
 public class Constants {
+    //日志路径/storage/emulated/0/robotium/H5
 
+       public static String CACH_DIR = Environment.getExternalStorageDirectory() + "/robotium/H5/";
+//    public static String CACH_DIR="/sdcard/robotium/H5/";
+
+    public static String logFilename = "log.txt";
     public static final String TEXT_BAIDU_LOGIN ="百度账号登录";
     //启动�?    
     public static final String MAIN_ACTIVITY ="com.baidu.bdgamesdk.demo.activity.MainActivity";

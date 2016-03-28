@@ -4,8 +4,7 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
-
-import org.json.JSONObject;
+import android.telephony.TelephonyManager;
 
 /**
  * Created by taoliang on 15/3/26.
@@ -124,5 +123,14 @@ public class DeviceUtil {
 
     public static boolean isWapNetwork() {
         return mUseWap;
+    }
+
+    public  static  String  getmtype(Context context) {
+        TelephonyManager mTm =( TelephonyManager)context.getSystemService(context.TELEPHONY_SERVICE);
+//        String imei = mTm.getDeviceId();
+//        String imsi = mTm.getSubscriberId();
+        String mtype = android.os.Build.MODEL; // 手机型号
+//        String numer = mTm.getLine1Number(); // 手机号码，有的可得，有的不可得
+        return mtype;
     }
 }
